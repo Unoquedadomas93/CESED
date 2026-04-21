@@ -497,7 +497,7 @@
         <div class="hero-grid">
           <div>
             <h1>Propuestas de política de drogas de los candidatos presidenciales 2026</h1>
-            <p class="subtitle"><strong>Esta página interactiva recopila, sintetiza y organiza las propuestas sobre política de drogas en los programas de gobierno de los cinco candidatos presidenciales principales. Los candidatos están organizados alfabéticamente.</strong> <br><br><small>Página realizada en la Dirección de Desarrollo Rural, Economías Ilícitas y Medio Ambiente del CESED <br> (Centro de Estudios sobre Seguridad y Drogas) de la Facultad de Economía de la Universidad <br> de los Andes y fue elaborado por María Alejandra Vélez y Samuel Quevedo.</small></p>
+            <p class="subtitle"><strong>Esta página interactiva recopila, sintetiza y organiza las propuestas sobre política de drogas en los programas de gobierno de los cinco candidatos presidenciales principales.</strong> <br><br><small>Página realizada en la Dirección de Desarrollo Rural, Economías Ilícitas y Medio Ambiente del CESED <br> (Centro de Estudios sobre Seguridad y Drogas) de la Facultad de Economía de la Universidad <br> de los Andes y fue elaborado por María Alejandra Vélez y Samuel Quevedo.</small></p>
             <div class="meta">
               <span class="pill" id="metaCandidates"></span>
               <span class="pill" id="metaThemes"></span>
@@ -507,7 +507,7 @@
           <div class="hero-side">
             <div class="hero-card">
               <div class="eyebrow">Cómo usar esta página</div>
-              <p>Explora por <strong>tema</strong> o por <strong>candidato</strong>, o usa el buscador para ubicar conceptos específicos y abre cada bloque para leer el texto completo.</p>
+              <p>Explora por <strong>tema</strong> o por <strong>candidato</strong>, o usa el <strong>buscador</strong> para ubicar conceptos específicos y abre cada bloque para leer el texto completo.</p>
             </div>
             <div class="hero-card">
               <div class="eyebrow">Qué encontrarás</div>
@@ -552,7 +552,7 @@
     </section>
     <main class="main" id="app"></main>
     <footer>
-      Todo error es propio.
+      CESED, 2026. Todo error es propio.
     </footer>
   </div>
 
@@ -829,7 +829,7 @@ async function init() {
       <div class="theme-sub">Conectando con la hoja de cálculo.</div>
     </div></div></section>`;
   try {
-    const resp = await fetch(CSV_URL);
+    const resp = await fetch(CSV_URL + "&t=" + Date.now());
     if (!resp.ok) throw new Error("HTTP " + resp.status);
     DATA = parseCSV(await resp.text());
   } catch(err) {
