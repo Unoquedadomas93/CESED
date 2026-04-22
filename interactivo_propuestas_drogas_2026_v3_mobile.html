@@ -190,6 +190,50 @@
     border-bottom: 1px solid rgba(19,32,27,.06);
     background: rgba(243,245,241,.95);
     backdrop-filter: blur(18px) saturate(135%);
+    max-height: 100vh;
+    overflow-y: auto;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .controls.collapsed {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .menu-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 16px;
+    z-index: 50;
+    display: none;
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, var(--green-2), var(--green-3));
+    border: none;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(45,27,61,.2);
+    text-align: center;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    touch-action: manipulation;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .menu-toggle:active {
+    transform: scale(0.95);
+  }
+  .menu-toggle.visible {
+    display: flex;
+  }
+  .menu-toggle svg {
+    width: 20px;
+    height: 20px;
   }
   .controls-inner {
     padding: 8px 0 6px;
@@ -537,6 +581,21 @@
       font-size: .8rem;
       min-height: 38px;
     }
+    .controls {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      left: 0;
+      right: 0;
+      border-radius: 0;
+      max-height: 80vh;
+    }
+    .controls.collapsed {
+      transform: translateY(-100%);
+    }
+    .menu-toggle.visible {
+      display: flex;
+    }
   }
 
   @media (min-width: 481px) and (max-width: 768px) {
@@ -581,7 +640,16 @@
     </header>
   </div>
 
-  <div class="controls">
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle search and filter menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+    <span style="font-size: 10px;">Menú</span>
+  </button>
+
+  <div class="controls" id="controlsMenu">
     <div class="wrap">
       <div class="controls-inner">
         <input id="searchInput" class="input" type="search" placeholder="Buscar propuestas...">
@@ -615,6 +683,41 @@
       CESED, 2026. Todo error es propio.
     </footer>
   </div>
+
+<script>
+  // Mobile menu collapse/expand on scroll
+  if (window.innerWidth <= 480) {
+    const header = document.querySelector('header');
+    const controls = document.getElementById('controlsMenu');
+    const menuToggle = document.getElementById('menuToggle');
+    let menuOpen = false;
+
+    window.addEventListener('scroll', () => {
+      const headerRect = header.getBoundingClientRect();
+      
+      // Show toggle button when header is out of view
+      if (headerRect.bottom < 0) {
+        menuToggle.classList.add('visible');
+      } else {
+        menuToggle.classList.remove('visible');
+        if (menuOpen) {
+          controls.classList.remove('collapsed');
+          menuOpen = false;
+        }
+      }
+    }, { passive: true });
+
+    menuToggle.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      if (menuOpen) {
+        controls.classList.remove('collapsed');
+        controls.style.display = 'block';
+      } else {
+        controls.classList.add('collapsed');
+      }
+    });
+  }
+</script>
 
 <script>
 const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQaEcMTjI_vSTHbSDLaN1M-qEwUC1USaMBDNVSdmJxg5u5vZjOSegTOwBrCUpHtDKbNZHVY5_Vg34fK/pub?gid=251227720&single=true&output=csv";
