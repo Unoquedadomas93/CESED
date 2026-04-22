@@ -223,7 +223,12 @@
     justify-content: center;
     gap: 4px;
     touch-action: manipulation;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+    opacity: 1;
+  }
+  .menu-toggle.menu-open {
+    opacity: 0.35;
+    pointer-events: none;
   }
   .menu-toggle:active {
     transform: scale(0.90);
@@ -715,8 +720,10 @@
       if (menuOpen) {
         controls.classList.remove('collapsed');
         controls.style.display = 'block';
+        menuToggle.classList.add('menu-open');
       } else {
         controls.classList.add('collapsed');
+        menuToggle.classList.remove('menu-open');
       }
     });
   }
