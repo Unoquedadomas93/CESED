@@ -188,25 +188,25 @@
     top: 0;
     z-index: 40;
     border-bottom: 1px solid rgba(19,32,27,.06);
-    background: rgba(243,245,241,.85);
+    background: rgba(243,245,241,.95);
     backdrop-filter: blur(18px) saturate(135%);
   }
   .controls-inner {
-    padding: 12px 0 8px;
+    padding: 8px 0 6px;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 8px;
     align-items: stretch;
   }
   .input, select {
     width: 100%;
-    border-radius: 16px;
+    border-radius: 14px;
     border: 1px solid rgba(19,32,27,.09);
     background: rgba(255,255,255,.92);
     box-shadow: var(--shadow-soft);
     color: var(--ink);
-    padding: 14px 14px;
-    font-size: 16px;
+    padding: 11px 12px;
+    font-size: 15px;
     outline: none;
     transition: .2s ease;
     -webkit-appearance: none;
@@ -232,7 +232,7 @@
     background: rgba(255,255,255,.9);
     color: var(--ink);
     border-radius: 999px;
-    padding: 11px 15px;
+    padding: 8px 12px;
     cursor: pointer;
     font-weight: 750;
     letter-spacing: -.01em;
@@ -241,9 +241,10 @@
     text-decoration: none;
     white-space: nowrap;
     flex-shrink: 0;
-    min-height: 44px;
+    min-height: 40px;
     display: flex;
     align-items: center;
+    font-size: .85rem;
     -webkit-user-select: none;
     user-select: none;
     touch-action: manipulation;
@@ -257,15 +258,15 @@
     border-color: transparent;
   }
   .toolbar {
-    padding: 10px 0 8px;
+    padding: 6px 0 4px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
     align-items: stretch;
   }
   .results {
     color: var(--muted);
-    font-size: .88rem;
+    font-size: .8rem;
     font-weight: 700;
   }
   .overview {
@@ -520,7 +521,21 @@
       padding: 12px 12px 11px;
     }
     .input, select {
-      padding: 12px 12px;
+      padding: 11px 12px;
+    }
+    .theme-nav-wrap {
+      display: none;
+    }
+    .controls-inner {
+      gap: 6px;
+    }
+    .segmented {
+      gap: 6px;
+    }
+    .segmented button {
+      padding: 7px 11px;
+      font-size: .8rem;
+      min-height: 38px;
     }
   }
 
