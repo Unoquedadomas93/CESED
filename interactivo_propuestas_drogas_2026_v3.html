@@ -423,6 +423,7 @@
     gap: 10px;
     font-weight: 850;
     letter-spacing: -.02em;
+    color: #000000;
   }
   .candidate-name {
     font-size: 2.3rem;
@@ -456,7 +457,7 @@
   .proposal-num {
     display: inline-block;
     margin-bottom: 8px;
-    color: var(--green-3);
+    color: #000000;
     font-size: .73rem;
     text-transform: uppercase;
     letter-spacing: .12em;
@@ -771,7 +772,7 @@ function renderCompareView(themes) {
             <div class="theme-sub"></div>
           </div>
           <div class="theme-actions">
-            <button type="button" onclick="document.getElementById('theme-${actualIndex}').scrollIntoView({behavior:'smooth', block:'start'})">Ubicar tema</button>
+            <button type="button" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Volver al principio</button>
           </div>
         </div>
         <div class="grid compare">${cols}</div>
