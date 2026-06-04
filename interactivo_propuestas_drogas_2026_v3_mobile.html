@@ -848,9 +848,14 @@ function renderOverview() {
 
 function renderCandidateTabs() {
   const container = document.getElementById("candidateTabs");
+  const colors = candidateColorMap();
   const tabs = [
     `<button type="button" class="${state.activeCandidate === "__all" ? "active" : ""}" data-candidate="__all">Todos</button>`,
-    ...DATA.candidates.map(c => `<button type="button" class="${state.activeCandidate === c ? "active" : ""}" data-candidate="${escapeHtml(c)}">${escapeHtml(c)}</button>`)
+    ...DATA.candidates.map((c, i) => {
+      const color = colors[c];
+      const styleAttr = state.activeCandidate === c ? ` style="--candidate-button-bg:${color}"` : "";
+      return `<button type="button" class="${state.activeCandidate === c ? "active" : ""}" data-candidate="${escapeHtml(c)}"${styleAttr}>${escapeHtml(c)}</button>`;
+    })
   ];
   container.innerHTML = tabs.join("");
   container.querySelectorAll("button").forEach(btn => {
