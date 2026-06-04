@@ -253,7 +253,7 @@
     border-color: rgba(35,114,87,.24);
   }
   .segmented button.active, .candidate-tabs button.active, .theme-chip.active {
-    background: linear-gradient(135deg, var(--green-2), var(--green-3));
+    background: var(--candidate-button-bg, linear-gradient(135deg, var(--green-2), var(--green-3)));
     color: #fff;
     border-color: transparent;
   }
@@ -422,7 +422,7 @@
     letter-spacing: -.02em;
   }
   .candidate-name {
-    font-size: 1.15rem;
+    font-size: 2.3rem;
     margin-bottom: 14px;
   }
   .dot {
@@ -700,9 +700,14 @@ function renderOverview() {
 
 function renderCandidateTabs() {
   const container = document.getElementById("candidateTabs");
+  const colors = candidateColorMap();
   const tabs = [
     `<button type="button" class="${state.activeCandidate === "__all" ? "active" : ""}" data-candidate="__all">Todos</button>`,
-    ...DATA.candidates.map(c => `<button type="button" class="${state.activeCandidate === c ? "active" : ""}" data-candidate="${escapeHtml(c)}">${escapeHtml(c)}</button>`)
+    ...DATA.candidates.map((c, i) => { 
+      const color = colors[c]; 
+      const styleAttr = state.activeCandidate === c ? ` style="--candidate-button-bg:${color}"` : ""; 
+      return `<button type="button" class="${state.activeCandidate === c ? "active" : ""}" data-candidate="${escapeHtml(c)}"${styleAttr}>${escapeHtml(c)}</button>`; 
+    })
   ];
   container.innerHTML = tabs.join("");
   container.querySelectorAll("button").forEach(btn => {

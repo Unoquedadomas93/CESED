@@ -304,7 +304,7 @@
     transform: scale(0.98);
   }
   .segmented button.active, .candidate-tabs button.active, .theme-chip.active {
-    background: linear-gradient(135deg, var(--green-2), var(--green-3));
+    background: var(--candidate-button-bg, linear-gradient(135deg, var(--green-2), var(--green-3)));
     color: #fff;
     border-color: transparent;
   }
@@ -474,7 +474,7 @@
     font-size: 1rem;
   }
   .candidate-name {
-    font-size: 1.15rem;
+    font-size: 2.3rem;
     margin-bottom: 12px;
   }
   .dot {
